@@ -1,0 +1,37 @@
+<DOCTYPE html>
+<html>
+	<head>
+		<meta charset = "UTF-8"/>
+		<title>LAB2_Z3</title>
+	</head>
+	<body>
+		<h1 align = "center">FORMULARZ OSOBOWY</h1>
+		<form align = "center">
+			<label>Imię: </label><br>
+			<input type="text" maxlength ="30" required /><br><br>
+			
+			<label>Nazwisko: </label><br>
+			<input type="text"  maxlength = "30" required /><br><br>
+			
+			<label>Numer Telefonu: </label><br>
+			<input type="tel" placeholder = "np. +48 123 456 789" pattern = "[+][0-9]{2} [0-9]{3} [0-9]{3} [0-9]{3}" required ><br><br>
+			
+			<label>Płeć: </label><br>
+			<label>KOBIETA<label/><input type = "checkbox"/>
+			<label>MĘŻCZYZNA<label/><input type = "checkbox"/><br><br>
+			
+			<label>Miasto Zamieszkania: </label><br>
+			<input type="text" maxlength = "50" required/><br><br>
+			
+			<label>Data Urodzenia:</label><br>
+			<input type = "date" required/><br><br>
+			
+			<label>Czy masz prawo jazdy?</label><br>
+			<label>TAK<label/><input type = "checkbox"/>
+			<label>NIE<label/><input type = "checkbox"/><br><br>
+			
+			<input type = "submit">
+		</form>
+		
+	</body>
+</html>
