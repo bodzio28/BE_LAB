@@ -1,0 +1,56 @@
+<DOCTYPE HMTL>
+<html>
+	<head>
+		<meta charset = "UTF-8"/>
+		<title>LAB3_3</title>
+        <link rel="stylesheet" href="style.css"/>
+	</head>
+    <body class = "lab3c">
+        <div class="formContainer">
+        <h2>FORMULARZ OSOBOWY</h2>
+        <form>
+            <div class="formSection">
+                <label for="fname">Imię:</label>
+                <input type="text" id="fname" name="fname" maxlength ="30" required>
+            </div>
+            <div class="formSection">
+                <label for="lname">Nazwisko:</label>
+                <input type="text" id="lname" name="lname"maxlength ="30" required>
+            </div>
+            <div class="formSection">
+                <label for="phone">Numer Telefonu:</label>
+                <input type="tel" id="phone" name="phone" placeholder="np. +48 123 456 789" pattern = "[+][0-9]{2} [0-9]{3} [0-9]{3} [0-9]{3}" required>
+            </div>
+            <div class="formSection">
+                <label>Płeć:</label>
+                <div class="checkboxSection">
+                    <label for="woman">KOBIETA</label>
+                    <input type="checkbox" id="woman" name="gender" value="woman">
+                    <label for="man">MĘŻCZYZNA</label>
+                    <input type="checkbox" id="man" name="gender" value="man">
+                </div>
+            </div>
+            <div class="formSection">
+                <label for="city">Miasto Zamieszkania:</label>
+                <input type="text" id="city" name="city" maxlength ="50" required>
+            </div>
+            <div class="formSection">
+                <label for="birthdate">Data Urodzenia:</label>
+                <input type="date" id="birthdate" name="birthdate" placeholder="dd.mm.rrrr" required>
+            </div>
+            <div class="formSection">
+                <label>Czy masz prawo jazdy?</label>
+                <div class="checkboxSection">
+                    <label for="license_yes">TAK</label>
+                    <input type="checkbox" id="licenseYes" name="license" value="yes">
+                    <label for="license_no">NIE</label>
+                    <input type="checkbox" id="licenseNo" name="license" value="no">
+                </div>
+            </div>
+            <div class="formSection">
+                <input type="submit" value="Prześlij">
+            </div>
+        </form>
+    </div>
+    </body>
+</html>
