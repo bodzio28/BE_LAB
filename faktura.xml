@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faktura>
+  <dataWystawienia>2025-11-15</dataWystawienia>
+  <miejsceWystawienia>Warszawa</miejsceWystawienia>
+  <sprzedawca>
+    <nazwa>Bodzio Sp. z o.o.</nazwa>
+    <adres>ul. Przykładowa 1, 00-001 Warszawa</adres>
+    <nip>123-456-78-90</nip>
+  </sprzedawca>
+</faktura>

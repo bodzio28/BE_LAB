@@ -2,7 +2,7 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
-  <title>Faktura</title>
+  <title>Faktura (XML + JS)</title>
   <style>
     body {
       background-color: #f0f0f0;
@@ -13,72 +13,80 @@
       font-family: Arial, sans-serif;
     }
 
-    /* KROK 1: Główny kontener
-      - Ustawiamy go na 'position: relative', aby pola input mogły być
-        pozycjonowane absolutnie względem niego.
-      - Ustalamy sztywny wymiar (tutaj 800x800px), aby pasował do tła.
-      - Wczytujemy Twoje zdjęcie jako tło.
+    /* KROK 1: Kontener na tło
+       Ustawiamy wymiary pasujące do Twojego (teraz pionowego) zdjęcia.
+       Zakładam proporcje kartki A4 (np. 700x1000px).
     */
     .faktura-kontener {
       position: relative;
-      width: 800px;
-      height: 800px;
-      background-image: url('fakturaVat.jpg');
-      background-size: contain; /* Dopasuj obraz do kontenera */
+      width: 700px;
+      height: 1000px;
+      background-image: url('faktura.jpg'); /* Upewnij się, że nazwa pliku się zgadza */
+      background-size: cover;
       background-repeat: no-repeat;
-      border: 1px solid #ccc;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      border: 1px solid #000;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
     }
 
-    /* KROK 2: Styl dla pól do wpisywania i pola wyniku
-      - 'position: absolute' to klucz do umieszczenia pola w dowolnym miejscu.
-      - Reszta to kosmetyka (usunięcie tła, obramowania), aby
-        wyglądało, jakbyśmy pisali prosto na fakturze.
-    */
-    .pole-danych {
+    /* KROK 2: Style dla pól */
+    
+    /* Wspólny styl dla wszystkich pól na fakturze */
+    .pole {
       position: absolute;
+      font-size: 13px;
+      padding: 2px;
+      box-sizing: border-box;
+    }
+    
+    /* Styl dla pól ładowanych z XML (bez ramki) */
+    .pole-xml {
       background: transparent;
       border: none;
-      border-bottom: 1px solid rgba(0, 0, 255, 0.5); /* Lekka niebieska linia, aby było widać pole */
-      font-size: 14px;
-      padding: 2px;
+      font-weight: bold;
+      color: #333;
     }
 
-    /* KROK 3: Precyzyjne pozycjonowanie pól
-      TO JEST NAJWAŻNIEJSZA CZĘŚĆ - MUSISZ JĄ DOPASOWAĆ!
-      Zmieniaj wartości 'top' (od góry) i 'left' (od lewej),
-      aby idealnie dopasować pola do tła faktury.
+    /* Styl dla pól, w które użytkownik wpisuje dane (lekka ramka) */
+    .pole-input {
+      background: rgba(255, 255, 255, 0.6);
+      border: 1px solid rgba(0, 0, 255, 0.4);
+    }
+    
+    /* Styl dla pól obliczonych (wyników) */
+    .pole-wynik {
+      background: rgba(255, 255, 0, 0.2);
+      border: 1px solid rgba(255, 0, 0, 0.5);
+      font-weight: bold;
+      text-align: right;
+    }
+
+    /* KROK 3: PRECYZYJNE POZYCJONOWANIE
+       Zmieniaj wartości 'top', 'left', 'width', aby dopasować pola do tła.
     */
     
-    /* Dwa przykładowe pola na kwotę usługi (w kolumnie "Wartość... z podatkiem") */
-    #kwota1 {
-      top: 312px;
-      left: 692px;
-      width: 90px;
-    }
-
-    #kwota2 {
-      top: 337px;
-      left: 692px;
-      width: 90px;
-    }
+    /* Dane z XML */
+    #data-wystawienia  { top: 60px; left: 450px; width: 120px; text-align: right;}
+    #miejsce-wystawienia { top: 60px; left: 580px; width: 110px; text-align: right;}
+    #sprzedawca-nazwa  { top: 100px; left: 450px; width: 210px; }
     
-    #kwota3 {
-      top: 362px;
-      left: 692px;
-      width: 90px;
-    }
+    /* Dane wpisywane (Nabywca) */
+    #nabywca-nazwa { top: 100px; left: 175px; width: 210px; }
+    #nabywca-adres { top: 125px; left: 175px; width: 210px; }
+    
+    /* ---- WIERSZ 1 ---- */
+    #nazwa-towaru-1 { top: 310px; left: 110px; width: 210px; }
+    #ilosc-1        { top: 310px; left: 450px; width: 50px; text-align: right; }
+    #cena-jedn-1    { top: 310px; left: 520px; width: 70px; text-align: right; }
+    #wartosc-towaru-1 { top: 310px; left: 610px; width: 90px; }
+    
+    /* ---- WIERSZ 2 ---- */
+    #nazwa-towaru-2 { top: 335px; left: 110px; width: 210px; }
+    #ilosc-2        { top: 335px; left: 450px; width: 50px; text-align: right; }
+    #cena-jedn-2    { top: 335px; left: 520px; width: 70px; text-align: right; }
+    #wartosc-towaru-2 { top: 335px; left: 610px; width: 90px; }
 
-    /* Pole na sumę (w wierszu "RAZEM") */
-    #suma-koncowa {
-      top: 563px;
-      left: 692px;
-      width: 90px;
-      font-weight: bold;
-      font-size: 15px;
-      border: 1px solid red; /* Czerwone obramowanie dla wyróżnienia */
-      background-color: rgba(255, 255, 0, 0.1); /* Lekko żółte tło */
-    }
+    /* ---- RAZEM ---- */
+    #suma-razem     { top: 670px; left: 610px; width: 90px; font-size: 15px; }
 
   </style>
 </head>
@@ -86,46 +94,99 @@
 
   <div class="faktura-kontener">
     
-    <input type="number" id="kwota1" class="pole-danych" placeholder="0.00">
-    <input type="number" id="kwota2" class="pole-danych" placeholder="0.00">
-    <input type="number" id="kwota3" class="pole-danych" placeholder="0.00">
+    <span id="data-wystawienia" class="pole pole-xml"></span>
+    <span id="miejsce-wystawienia" class="pole pole-xml"></span>
+    <span id="sprzedawca-nazwa" class="pole pole-xml"></span>
     
-    <input type="text" id="suma-koncowa" class="pole-danych" readonly>
+    <input type="text" id="nabywca-nazwa" class="pole pole-input" placeholder="Imię, nazwisko...">
+    <input type="text" id="nabywca-adres" class="pole pole-input" placeholder="Adres...">
+    
+    <input type="text" id="nazwa-towaru-1" class="pole pole-input" placeholder="Nazwa towaru...">
+    <input type="number" id="ilosc-1" class="pole pole-input pole-obliczeniowe" value="0" min="0">
+    <input type="number" id="cena-jedn-1" class="pole pole-input pole-obliczeniowe" value="0.00" step="0.01" min="0">
+    <input type="text" id="wartosc-towaru-1" class="pole pole-wynik" readonly>
+    
+    <input type="text" id="nazwa-towaru-2" class="pole pole-input" placeholder="Nazwa towaru...">
+    <input type="number" id="ilosc-2" class="pole pole-input pole-obliczeniowe" value="0" min="0">
+    <input type="number" id="cena-jedn-2" class="pole pole-input pole-obliczeniowe" value="0.00" step="0.01" min="0">
+    <input type="text" id="wartosc-towaru-2" class="pole pole-wynik" readonly>
+    
+    <input type="text" id="suma-razem" class="pole pole-wynik" readonly>
 
   </div>
 
   <script>
-    // KROK 4: Logika JavaScript do sumowania
     
-    // 1. Pobieramy wszystkie pola, które chcemy sumować
-    const polaKwot = document.querySelectorAll('#kwota1, #kwota2, #kwota3');
-    
-    // 2. Pobieramy pole, w którym ma się pojawić wynik
-    const poleSuma = document.getElementById('suma-koncowa');
+    // ==========================================================
+    // CZĘŚĆ 1: ŁADOWANIE DANYCH STATYCZNYCH Z XML
+    // ==========================================================
+    async function zaladujDaneXML() {
+      try {
+        const response = await fetch('faktura.xml');
+        if (!response.ok) {
+            throw new Error(`Błąd HTTP! Status: ${response.status}`);
+        }
+        const xmlText = await response.text();
+        
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(xmlText, "application/xml");
 
-    // 3. Tworzymy funkcję, która będzie uruchamiana przy każdej zmianie
-    function obliczSume() {
-      let suma = 0;
-      
-      // Przechodzimy przez każde pole i dodajemy jego wartość do sumy
-      polaKwot.forEach(function(pole) {
-        // 'parseFloat' zamienia tekst (np. "10.50") na liczbę.
-        // '|| 0' sprawia, że jeśli pole jest puste, liczymy je jako 0.
-        suma += parseFloat(pole.value) || 0;
-      });
-      
-      // 4. Wyświetlamy wynik w polu sumy
-      // '.toFixed(2)' formatuje liczbę do dwóch miejsc po przecinku (np. 150.00)
-      poleSuma.value = suma.toFixed(2) + ' zł';
+        // Wyciągamy dane z XML
+        const data = xmlDoc.querySelector('dataWystawienia').textContent;
+        const miejsce = xmlDoc.querySelector('miejsceWystawienia').textContent;
+        const sprzedawca = xmlDoc.querySelector('sprzedawca nazwa').textContent;
+
+        // Wstrzykujemy dane do naszych pól HTML
+        document.getElementById('data-wystawienia').textContent = data;
+        document.getElementById('miejsce-wystawienia').textContent = miejsce;
+        document.getElementById('sprzedawca-nazwa').textContent = sprzedawca;
+        
+      } catch (error) {
+        console.error('Nie można załadować pliku XML:', error);
+        alert('Nie udało się załadować danych statycznych z XML. Sprawdź, czy plik dane.xml istnieje i czy serwer działa.');
+      }
     }
 
-    // 5. Mówimy przeglądarce, aby uruchamiała funkcję 'obliczSume'
-    //    za każdym razem, gdy użytkownik coś wpisze w którymkolwiek z pól.
-    polaKwot.forEach(function(pole) {
+    // ==========================================================
+    // CZĘŚĆ 2: KALKULATOR SUM (JavaScript)
+    // ==========================================================
+    function obliczSume() {
+      let sumaCalkowita = 0;
+      
+      // --- Przetwarzanie Wiersza 1 ---
+      const ilosc1 = parseFloat(document.getElementById('ilosc-1').value) || 0;
+      const cena1 = parseFloat(document.getElementById('cena-jedn-1').value) || 0;
+      const wartosc1 = ilosc1 * cena1;
+      document.getElementById('wartosc-towaru-1').value = wartosc1.toFixed(2);
+      sumaCalkowita += wartosc1;
+      
+      // --- Przetwarzanie Wiersza 2 ---
+      const ilosc2 = parseFloat(document.getElementById('ilosc-2').value) || 0;
+      const cena2 = parseFloat(document.getElementById('cena-jedn-2').value) || 0;
+      const wartosc2 = ilosc2 * cena2;
+      document.getElementById('wartosc-towaru-2').value = wartosc2.toFixed(2);
+      sumaCalkowita += wartosc2;
+      
+      // --- Wyświetlenie sumy końcowej ---
+      document.getElementById('suma-razem').value = sumaCalkowita.toFixed(2) + ' zł';
+    }
+
+    // ==========================================================
+    // START PROGRAMU
+    // ==========================================================
+
+    // Kiedy strona się załaduje, najpierw wczytaj dane z XML
+    document.addEventListener('DOMContentLoaded', zaladujDaneXML);
+
+    // Znajdź wszystkie pola, które wpływają na obliczenia
+    const polaDoKalkulacji = document.querySelectorAll('.pole-obliczeniowe');
+    
+    // Dodaj "nasłuch" do każdego z nich, aby przeliczać sumę na żywo
+    polaDoKalkulacji.forEach(function(pole) {
       pole.addEventListener('input', obliczSume);
     });
 
-    // Uruchamiamy funkcję raz na starcie, aby wyświetlić "0.00 zł"
+    // Uruchom obliczenia raz na starcie, aby wyświetlić "0.00"
     obliczSume();
 
   </script>
