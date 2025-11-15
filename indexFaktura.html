@@ -63,8 +63,10 @@
     /* Dane z XML */
     #data-wystawienia  { top: 80px; left: 1000px; width: 120px; text-align: right;}
     #miejsce-wystawienia { top: 60px; left: 1100px; width: 110px; text-align: right;}
-    #sprzedawca-nazwa  { top: 100px; left: 450px; width: 210px; }
-    
+    #sprzedawca-imie  { top: 100px; left: 450px; width: 210px; }
+    #sprzedawca-nazwisko  { top: 130px; left: 450px; width: 210px; }
+    #sprzedawca-adres  { top: 160px; left: 450px; width: 210px; }
+
     /* Dane wpisywane (Nabywca) */
     #nabywca-nazwa { top: 290px; left: 500px; width: 700px; }
     #nabywca-adres { top: 357px; left: 300px; width: 700px; }
@@ -165,12 +167,18 @@
         // Wyciągamy dane z XML
         const data = xmlDoc.querySelector('dataWystawienia').textContent;
         const miejsce = xmlDoc.querySelector('miejsceWystawienia').textContent;
-        const sprzedawca = xmlDoc.querySelector('sprzedawca nazwa').textContent;
+        const sprzedawcaNazwa = xmlDoc.querySelector('sprzedawca nazwa').textContent;
+        const sprzedawcaImie = xmlDoc.querySelector('sprzedawca imie').textContent;
+        const sprzedawcaNazwisko = xmlDoc.querySelector('sprzedawca nazwisko').textContent;
+        const sprzedawcaAdres = xmlDoc.querySelector('sprzedawca adres').textContent;
 
         // Wstrzykujemy dane do naszych pól HTML
         document.getElementById('data-wystawienia').textContent = data;
         document.getElementById('miejsce-wystawienia').textContent = miejsce;
         document.getElementById('sprzedawca-nazwa').textContent = sprzedawca;
+        document.getElementById('sprzedawca-imie').textContent = sprzedawcaImie;
+        document.getElementById('sprzedawca-nazwisko').textContent = sprzedawcaNazwisko;
+        document.getElementById('sprzedawca-adres').textContent = sprzedawcaAdres;
         
       } catch (error) {
         console.error('Nie można załadować pliku XML:', error);

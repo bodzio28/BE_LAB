@@ -3,8 +3,9 @@
   <dataWystawienia>2025-11-15</dataWystawienia>
   <miejsceWystawienia>Warszawa</miejsceWystawienia>
   <sprzedawca>
-    <nazwa>Bodzio Sp. z o.o.</nazwa>
-    <adres>ul. Przykładowa 1, 00-001 Warszawa</adres>
-    <nip>123-456-78-90</nip>
+    <imie>Jan</imie>
+    <nazwisko>Kowalski</nazwisko> 
+    <nazwa>JAN Sp. z o.o.</nazwa>
+    <adres>ul. Warszawa 1, 00-001 Warszawa</adres>
   </sprzedawca>
 </faktura>
