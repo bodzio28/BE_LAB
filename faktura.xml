@@ -1,45 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <faktura numer="FV/2025/11/01">
-    <dataWystawienia>2025-11-01</dataWystawienia>
-    <dataSprzedazy>2025-11-01</dataSprzedazy>
-    <sprzedawca>
-        <nazwa>ABC Sp. z o.o.</nazwa>
-        <adres>
-            <ulica>ul. Przykładowa 1</ulica>
-            <miasto>Warszawa</miasto>
-            <kod_pocztowy>00-001</kod_pocztowy>
-            <kraj>Polska</kraj>
-        </adres>
-        <nip>123-456-78-90</nip>
-    </sprzedawca>
-    <nabywca>
-        <nazwa>XYZ S.A.</nazwa>
-        <adres>
-            <ulica>ul. Przykładowa 2</ulica>
-            <miasto>Warszawa</miasto>
-            <kodPocztowy>00-002</kodPocztowy>
-            <kraj>Polska</kraj>
-        </adres>
-        <nip>098-765-43-21</nip>
-    </nabywca>
-    <pozycje>
-        <pozycja>
-            <nazwaTowaru>Produkt A</nazwaTowaru>
-            <ilosc>10</ilosc>
-            <cenaJednostkowa>50.00</cenaJednostkowa>
-            <wartoscNetto>500.00</wartoscNetto>
-            <stawkaVat>23%</stawkaVat>
-            <wartoscVat>115.00</wartoscVat>
-            <wartoscBrutto>615.00</wartoscBrutto>
-        </pozycja>
-        <pozycja>
-            <nazwaTowaru>Produkt B</nazwaTowaru>
-            <ilosc>5</ilosc>
-            <cenaJednostkowa>100.00</cenaJednostkowa>
-            <wartoscNetto>500.00</wartoscNetto>
-            <stawkaVat>23%</stawkaVat>
-            <wartoscVat>115.00</wartoscVat>
-            <wartoscBrutto>615.00</wartoscBrutto>
-        </pozycja>
-    </pozycje>
+  <dataWystawienia>2025-11-15</dataWystawienia>
+  <sprzedawca>
+    <nazwa>Firma Sprzedająca ABC Sp. z o.o.</nazwa>
+    <adres>ul. Handlowa 1, 00-001 Warszawa</adres>
+    <nip>123-456-78-90</nip>
+  </sprzedawca>
+  <nabywca>
+    <nazwa>Klient XYZ Jan Kowalski</nazwa>
+    <adres>ul. Kupiecka 10, 01-002 Kraków</adres>
+    <nip>987-654-32-10</nip>
+  </nabywca>
+  <pozycje>
+    <pozycja>
+      <nazwa>Usługa programistyczna</nazwa>
+      <ilosc>10</ilosc>
+      <jednostka>godz.</jednostka>
+      <cenaNetto>200.00</cenaNetto>
+      <stawkaVAT>23</stawkaVAT>
+    </pozycja>
+    <pozycja>
+      <nazwa>Licencja na oprogramowanie</nazwa>
+      <ilosc>1</ilosc>
+      <jednostka>szt.</jednostka>
+      <cenaNetto>1500.00</cenaNetto>
+      <stawkaVAT>23</stawkaVAT>
+    </pozycja>
+  </pozycje>
 </faktura>
