@@ -33,7 +33,7 @@
     /* Wspólny styl dla wszystkich pól na fakturze */
     .pole {
       position: absolute;
-      font-size: 20px;
+      font-size: 35px;
       padding: 5px;
       box-sizing: border-box;
     }
@@ -59,10 +59,6 @@
       font-weight: bold;
       text-align: right;
     }
-
-    /* KROK 3: PRECYZYJNE POZYCJONOWANIE
-       Zmieniaj wartości 'top', 'left', 'width', aby dopasować pola do tła.
-    */
     
     /* Dane z XML */
     #data-wystawienia  { top: 80px; left: 1000px; width: 120px; text-align: right;}
@@ -70,23 +66,41 @@
     #sprzedawca-nazwa  { top: 100px; left: 450px; width: 210px; }
     
     /* Dane wpisywane (Nabywca) */
-    #nabywca-nazwa { top: 100px; left: 175px; width: 210px; }
-    #nabywca-adres { top: 125px; left: 175px; width: 210px; }
+    #nabywca-nazwa { top: 290px; left: 500px; width: 700px; }
+    #nabywca-adres { top: 357px; left: 300px; width: 700px; }
     
     /* ---- WIERSZ 1 ---- */
-    #nazwa-towaru-1 { top: 310px; left: 110px; width: 210px; }
-    #ilosc-1        { top: 310px; left: 450px; width: 50px; text-align: right; }
-    #cena-jedn-1    { top: 310px; left: 520px; width: 70px; text-align: right; }
-    #wartosc-towaru-1 { top: 310px; left: 610px; width: 90px; }
+    #nazwa-towaru-1 { top: 542px; left: 185px; width: 900px; }
+    #ilosc-1        { top: 537px; left: 1300px; width: 50px; text-align: center;}
+    #cena-jedn-1    { top: 537px; left: 1430px; width: 200px; text-align: center;}
+    #wartosc-towaru-1 { top: 537px; left: 1640px; width: 250px; text-align: center;}
     
     /* ---- WIERSZ 2 ---- */
-    #nazwa-towaru-2 { top: 335px; left: 110px; width: 210px; }
-    #ilosc-2        { top: 335px; left: 450px; width: 50px; text-align: right; }
-    #cena-jedn-2    { top: 335px; left: 520px; width: 70px; text-align: right; }
-    #wartosc-towaru-2 { top: 335px; left: 610px; width: 90px; }
+    #nazwa-towaru-2 { top: 597px; left: 185px; width: 900px; }
+    #ilosc-2        { top: 593px; left: 1300px; width: 50px; text-align: center;}
+    #cena-jedn-2    { top: 593px; left: 1430px; width: 200px; text-align: center;}
+    #wartosc-towaru-2 { top: 593px  ; left: 1640px; width: 250px; text-align: center;}
+
+    /* ---- WIERSZ 3 ---- */
+    #nazwa-towaru-3 { top: 653px; left: 185px; width: 900px; }
+    #ilosc-3        { top: 649px; left: 1300px; width: 50px; text-align: center;}
+    #cena-jedn-3    { top: 649px; left: 1430px; width: 200px; text-align: center;}
+    #wartosc-towaru-3 { top: 649px  ; left: 1640px; width: 250px; text-align: center;}
+
+    /* ---- WIERSZ 4 ---- */
+    #nazwa-towaru-4 { top: 707px; left: 185px; width: 900px; }
+    #ilosc-4        { top: 703px; left: 1300px; width: 50px; text-align: center;}
+    #cena-jedn-4    { top: 703px; left: 1430px; width: 200px; text-align: center;}
+    #wartosc-towaru-4 { top: 703px  ; left: 1640px; width: 250px; text-align: center;}
+
+    /* ---- WIERSZ 5 ---- */
+    #nazwa-towaru-5 { top: 763px; left: 185px; width: 900px; }
+    #ilosc-5        { top: 759px; left: 1300px; width: 50px; text-align: center;}
+    #cena-jedn-5    { top: 759px; left: 1430px; width: 200px; text-align: center;}
+    #wartosc-towaru-5 { top: 759px  ; left: 1640px; width: 250px; text-align: center;}
 
     /* ---- RAZEM ---- */
-    #suma-razem     { top: 670px; left: 610px; width: 90px; font-size: 15px; }
+    #suma-razem     { top: 830px; left: 1640px; width: 250px; text-align: center;}
 
   </style>
 </head>
@@ -105,13 +119,30 @@
     <input type="number" id="ilosc-1" class="pole pole-input pole-obliczeniowe" value="0" min="0">
     <input type="number" id="cena-jedn-1" class="pole pole-input pole-obliczeniowe" value="0.00" step="0.01" min="0">
     <input type="text" id="wartosc-towaru-1" class="pole pole-wynik" readonly>
-    
+
     <input type="text" id="nazwa-towaru-2" class="pole pole-input" placeholder="Nazwa towaru...">
     <input type="number" id="ilosc-2" class="pole pole-input pole-obliczeniowe" value="0" min="0">
     <input type="number" id="cena-jedn-2" class="pole pole-input pole-obliczeniowe" value="0.00" step="0.01" min="0">
     <input type="text" id="wartosc-towaru-2" class="pole pole-wynik" readonly>
+
+    <input type="text" id="nazwa-towaru-3" class="pole pole-input" placeholder="Nazwa towaru...">
+    <input type="number" id="ilosc-3" class="pole pole-input pole-obliczeniowe" value="0" min="0">
+    <input type="number" id="cena-jedn-3" class="pole pole-input pole-obliczeniowe" value="0.00" step="0.01" min="0">
+    <input type="text" id="wartosc-towaru-3" class="pole pole-wynik" readonly>
+
+    <input type="text" id="nazwa-towaru-4" class="pole pole-input" placeholder="Nazwa towaru...">
+    <input type="number" id="ilosc-4" class="pole pole-input pole-obliczeniowe" value="0" min="0">
+    <input type="number" id="cena-jedn-4" class="pole pole-input pole-obliczeniowe" value="0.00" step="0.01" min="0">
+    <input type="text" id="wartosc-towaru-4" class="pole pole-wynik" readonly>
     
-    <input type="text" id="suma-razem" class="pole pole-wynik" readonly>
+    <input type="text" id="nazwa-towaru-5" class="pole pole-input" placeholder="Nazwa towaru...">
+    <input type="number" id="ilosc-5" class="pole pole-input pole-obliczeniowe" value="0" min="0">
+    <input type="number" id="cena-jedn-5" class="pole pole-input pole-obliczeniowe" value="0.00" step="0.01" min="0">
+    <input type="text" id="wartosc-towaru-5" class="pole pole-wynik" readonly>
+
+
+    
+ <input type="text" id="suma-razem" class="pole pole-wynik" readonly>
 
   </div>
 
@@ -166,6 +197,24 @@
       const wartosc2 = ilosc2 * cena2;
       document.getElementById('wartosc-towaru-2').value = wartosc2.toFixed(2);
       sumaCalkowita += wartosc2;
+
+      const ilosc3 = parseFloat(document.getElementById('ilosc-3').value) || 0;
+      const cena3 = parseFloat(document.getElementById('cena-jedn-3').value) || 0;
+      const wartosc3 = ilosc3 * cena3;
+      document.getElementById('wartosc-towaru-3').value = wartosc3.toFixed(2);
+      sumaCalkowita += wartosc3;
+
+      const ilosc4 = parseFloat(document.getElementById('ilosc-4').value) || 0;
+      const cena4 = parseFloat(document.getElementById('cena-jedn-4').value) || 0;
+      const wartosc4 = ilosc4 * cena4;
+      document.getElementById('wartosc-towaru-4').value = wartosc4.toFixed(2);
+      sumaCalkowita += wartosc4;
+
+      const ilosc5 = parseFloat(document.getElementById('ilosc-5').value) || 0;
+      const cena5 = parseFloat(document.getElementById('cena-jedn-5').value) || 0;
+      const wartosc5 = ilosc5 * cena5;
+      document.getElementById('wartosc-towaru-5').value = wartosc5.toFixed(2);
+      sumaCalkowita += wartosc5;
       
       // --- Wyświetlenie sumy końcowej ---
       document.getElementById('suma-razem').value = sumaCalkowita.toFixed(2) + ' zł';
