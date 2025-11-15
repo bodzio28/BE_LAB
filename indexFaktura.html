@@ -157,7 +157,7 @@
     // ==========================================================
     async function zaladujDaneXML() {
       try {
-        const response = await fetch('faktura.xml');
+        const response = await fetch("faktura.xml");
         if (!response.ok) {
             throw new Error(`Błąd HTTP! Status: ${response.status}`);
         }
@@ -251,4 +251,5 @@
   </script>
 
 </body>
+
 </html>
