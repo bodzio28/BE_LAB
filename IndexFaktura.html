@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang ="pl">
+    <head>
+        <meta charset="UTF-8">
+        <title>Faktura</title>
+    </head>
+    <body>
+        <h2>Podgląd faktury</h2>
+  
+        <div id="kontener-faktury"> Ładowanie danych...</div>
+
+        <script>
+            async function zaladujFakture(){
+                try {
+                    // 1. Równoległe pobranie obu plików
+                    const [responseXml, responseXsl] = await Promise.all([
+                    fetch('faktura.xml'),
+                    fetch('styl.xsl')
+                    ]);
+
+                    // 2. Parsowanie odpowiedzi do dokumentów XML
+                    const xmlText = await responseXml.text();
+                    const xslText = await responseXsl.text();
+
+                    const parser = new DOMParser();
+                    const xmlDoc = parser.parseFromString(xmlText, "application/xml");
+                    const xslDoc = parser.parseFromString(xslText, "application/xml");
+
+                    // 3. Inicjalizacja procesora XSLT
+                    const xsltProcessor = new XSLTProcessor();
+                    xsltProcessor.importStylesheet(xslDoc);
+
+                    // 4. Transformacja XML przy użyciu XSL
+                    const resultDocument = xsltProcessor.transformToFragment(xmlDoc, document);
+
+                    // 5. Wyświetlenie wyników na stronie
+                    const container = document.getElementById('kontener-faktury');
+                    container.innerHTML = ''; // Wyczyść "Ładowanie..."
+                    container.appendChild(resultDocument);
+
+                } 
+                
+                catch (error) {
+                    console.error('Błąd podczas ładowania lub transformacji XSLT:', error);
+                    document.getElementById('kontener-faktury').innerText = 'Wystąpił błąd ładowania faktury.';
+                }
+            }
+
+            // Uruchom funkcję po załadowaniu strony
+            document.addEventListener('DOMContentLoaded', zaladujFakture);
+        </script>
+    </body>
+</html>
