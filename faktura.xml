@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faktura numer="FV/2025/11/01">
+    <dataWystawienia>2025-11-01</dataWystawienia>
+    <dataSprzedazy>2025-11-01</dataSprzedazy>
+    <sprzedawca>
+        <nazwa>ABC Sp. z o.o.</nazwa>
+        <adres>
+            <ulica>ul. Przykładowa 1</ulica>
+            <miasto>Warszawa</miasto>
+            <kod_pocztowy>00-001</kod_pocztowy>
+            <kraj>Polska</kraj>
+        </adres>
+        <nip>123-456-78-90</nip>
+    </sprzedawca>
+    <nabywca>
+        <nazwa>XYZ S.A.</nazwa>
+        <adres>
+            <ulica>ul. Przykładowa 2</ulica>
+            <miasto>Warszawa</miasto>
+            <kodPocztowy>00-002</kodPocztowy>
+            <kraj>Polska</kraj>
+        </adres>
+        <nip>098-765-43-21</nip>
+    </nabywca>
+    <pozycje>
+        <pozycja>
+            <nazwaTowaru>Produkt A</nazwaTowaru>
+            <ilosc>10</ilosc>
+            <cenaJednostkowa>50.00</cenaJednostkowa>
+            <wartoscNetto>500.00</wartoscNetto>
+            <stawkaVat>23%</stawkaVat>
+            <wartoscVat>115.00</wartoscVat>
+            <wartoscBrutto>615.00</wartoscBrutto>
+        </pozycja>
+        <pozycja>
+            <nazwaTowaru>Produkt B</nazwaTowaru>
+            <ilosc>5</ilosc>
+            <cenaJednostkowa>100.00</cenaJednostkowa>
+            <wartoscNetto>500.00</wartoscNetto>
+            <stawkaVat>23%</stawkaVat>
+            <wartoscVat>115.00</wartoscVat>
+            <wartoscBrutto>615.00</wartoscBrutto>
+        </pozycja>
+    </pozycje>
+</faktura>
