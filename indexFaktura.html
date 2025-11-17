@@ -12,11 +12,7 @@
       padding: 20px;
       font-family: Arial, sans-serif;
     }
-
-    /* KROK 1: Kontener na tło
-       Ustawiamy wymiary pasujące do Twojego (teraz pionowego) zdjęcia.
-       Zakładam proporcje kartki A4 (np. 700x1000px).
-    */
+    
     .faktura-kontener {
       position: relative;
       width: 2000px;
@@ -28,9 +24,6 @@
       box-shadow: 0 0 10px rgba(0,0,0,0.5);
     }
 
-    /* KROK 2: Style dla pól */
-    
-    /* Wspólny styl dla wszystkich pól na fakturze */
     .pole {
       position: absolute;
       font-size: 35px;
@@ -38,7 +31,6 @@
       box-sizing: border-box;
     }
     
-    /* Styl dla pól ładowanych z XML (bez ramki) */
     .pole-xml {
       background: transparent;
       border: none;
@@ -46,13 +38,11 @@
       color: #333;
     }
 
-    /* Styl dla pól, w które użytkownik wpisuje dane (lekka ramka) */
     .pole-input {
       background: rgba(255, 255, 255, 0.6);
       border: 1px solid rgba(0, 0, 255, 0.4);
     }
     
-    /* Styl dla pól obliczonych (wyników) */
     .pole-wynik {
       background: rgba(255, 255, 0, 0.2);
       border: 1px solid rgba(255, 0, 0, 0.5);
@@ -60,12 +50,13 @@
       text-align: right;
     }
     
-    /* Dane z XML */
-    #data-wystawienia  { top: 80px; left: 1000px; width: 120px; text-align: right;}
-    #miejsce-wystawienia { top: 60px; left: 1100px; width: 110px; text-align: right;}
+    /* XML */
+    #data-wystawienia  { top: 80px; left: 1000px; width: 200px; text-align: center;}
+    #miejsce-wystawienia { top: 60px; left: 1100px; width: 110px; text-align: center;}
     #sprzedawca-imie  { top: 100px; left: 450px; width: 210px; }
     #sprzedawca-nazwisko  { top: 130px; left: 450px; width: 210px; }
-    #sprzedawca-adres  { top: 160px; left: 450px; width: 210px; }
+    #sprzedawca-adres  { top: 160px; left: 450px; width: 400px; }
+    #sprzedawca-nazwa  { top: 190px; left: 450px; width: 400px; }
 
     /* Dane wpisywane (Nabywca) */
     #nabywca-nazwa { top: 290px; left: 500px; width: 700px; }
@@ -248,4 +239,5 @@
   </script>
 
 </body>
+
 </html>
