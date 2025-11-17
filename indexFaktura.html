@@ -56,44 +56,37 @@
     
     #sprzedawca-imie  { top: 70px; left: 220px; width: 210px; }
     #sprzedawca-nazwisko  { top: 100px; left: 220px; width: 210px; }
-    #sprzedawca-adres  { top: 130px; left: 220px; width: 400px; }
+    #sprzedawca-adres  { top: 130px; left: 220px; width: 600px; }
     #sprzedawca-nazwa  { top: 200px; left: 220px; width: 400px; }
 
-    /* Dane wpisywane (Nabywca) */
     #nabywca-nazwa { top: 290px; left: 500px; width: 700px; }
     #nabywca-adres { top: 357px; left: 300px; width: 700px; }
-    
-    /* ---- WIERSZ 1 ---- */
+
     #nazwa-towaru-1 { top: 542px; left: 185px; width: 900px; }
     #ilosc-1        { top: 537px; left: 1300px; width: 50px; text-align: center;}
     #cena-jedn-1    { top: 537px; left: 1430px; width: 200px; text-align: center;}
     #wartosc-towaru-1 { top: 537px; left: 1640px; width: 250px; text-align: center;}
-    
-    /* ---- WIERSZ 2 ---- */
+
     #nazwa-towaru-2 { top: 597px; left: 185px; width: 900px; }
     #ilosc-2        { top: 593px; left: 1300px; width: 50px; text-align: center;}
     #cena-jedn-2    { top: 593px; left: 1430px; width: 200px; text-align: center;}
     #wartosc-towaru-2 { top: 593px  ; left: 1640px; width: 250px; text-align: center;}
 
-    /* ---- WIERSZ 3 ---- */
     #nazwa-towaru-3 { top: 653px; left: 185px; width: 900px; }
     #ilosc-3        { top: 649px; left: 1300px; width: 50px; text-align: center;}
     #cena-jedn-3    { top: 649px; left: 1430px; width: 200px; text-align: center;}
     #wartosc-towaru-3 { top: 649px  ; left: 1640px; width: 250px; text-align: center;}
 
-    /* ---- WIERSZ 4 ---- */
     #nazwa-towaru-4 { top: 707px; left: 185px; width: 900px; }
     #ilosc-4        { top: 703px; left: 1300px; width: 50px; text-align: center;}
     #cena-jedn-4    { top: 703px; left: 1430px; width: 200px; text-align: center;}
     #wartosc-towaru-4 { top: 703px  ; left: 1640px; width: 250px; text-align: center;}
 
-    /* ---- WIERSZ 5 ---- */
     #nazwa-towaru-5 { top: 763px; left: 185px; width: 900px; }
     #ilosc-5        { top: 759px; left: 1300px; width: 50px; text-align: center;}
     #cena-jedn-5    { top: 759px; left: 1430px; width: 200px; text-align: center;}
     #wartosc-towaru-5 { top: 759px  ; left: 1640px; width: 250px; text-align: center;}
 
-    /* ---- RAZEM ---- */
     #suma-razem     { top: 830px; left: 1640px; width: 250px; text-align: center;}
 
   </style>
@@ -139,15 +132,11 @@
 
 
     
- <input type="text" id="suma-razem" class="pole pole-wynik" readonly>
+     <input type="text" id="suma-razem" class="pole pole-wynik" readonly>
 
   </div>
-
   <script>
     
-    // ==========================================================
-    // CZĘŚĆ 1: ŁADOWANIE DANYCH STATYCZNYCH Z XML
-    // ==========================================================
     async function zaladujDaneXML() {
 
         const response = await fetch('faktura.xml');
@@ -160,7 +149,6 @@
         const parser = new DOMParser();
         const xmlDoc = parser.parseFromString(xmlText, "application/xml");
 
-        // Wyciągamy dane z XML
         const data = xmlDoc.querySelector('dataWystawienia').textContent;
         const miejsce = xmlDoc.querySelector('miejsceWystawienia').textContent;
         const sprzedawcaImie = xmlDoc.querySelector('sprzedawca imie').textContent;
@@ -168,7 +156,6 @@
         const sprzedawcaNazwa = xmlDoc.querySelector('sprzedawca nazwa').textContent;
         const sprzedawcaAdres = xmlDoc.querySelector('sprzedawca adres').textContent;
 
-        // Wstrzykujemy dane do naszych pól HTML
         document.getElementById('data-wystawienia').textContent = data;
         document.getElementById('miejsce-wystawienia').textContent = miejsce;
         document.getElementById('sprzedawca-imie').textContent = sprzedawcaImie;
@@ -176,21 +163,16 @@
         document.getElementById('sprzedawca-nazwa').textContent = sprzedawcaNazwa;
         document.getElementById('sprzedawca-adres').textContent = sprzedawcaAdres;
     }
-
-    // ==========================================================
-    // CZĘŚĆ 2: KALKULATOR SUM (JavaScript)
-    // ==========================================================
+    // Sumowanie Pól
     function obliczSume() {
       let sumaCalkowita = 0;
       
-      // --- Przetwarzanie Wiersza 1 ---
       const ilosc1 = parseFloat(document.getElementById('ilosc-1').value) || 0;
       const cena1 = parseFloat(document.getElementById('cena-jedn-1').value) || 0;
       const wartosc1 = ilosc1 * cena1;
       document.getElementById('wartosc-towaru-1').value = wartosc1.toFixed(2);
       sumaCalkowita += wartosc1;
       
-      // --- Przetwarzanie Wiersza 2 ---
       const ilosc2 = parseFloat(document.getElementById('ilosc-2').value) || 0;
       const cena2 = parseFloat(document.getElementById('cena-jedn-2').value) || 0;
       const wartosc2 = ilosc2 * cena2;
@@ -215,26 +197,17 @@
       document.getElementById('wartosc-towaru-5').value = wartosc5.toFixed(2);
       sumaCalkowita += wartosc5;
       
-      // --- Wyświetlenie sumy końcowej ---
       document.getElementById('suma-razem').value = sumaCalkowita.toFixed(2) + ' zł';
     }
-
-    // ==========================================================
-    // START PROGRAMU
-    // ==========================================================
-
-    // Kiedy strona się załaduje, najpierw wczytaj dane z XML
+    
     document.addEventListener('DOMContentLoaded', zaladujDaneXML);
 
-    // Znajdź wszystkie pola, które wpływają na obliczenia
     const polaDoKalkulacji = document.querySelectorAll('.pole-obliczeniowe');
     
-    // Dodaj "nasłuch" do każdego z nich, aby przeliczać sumę na żywo
     polaDoKalkulacji.forEach(function(pole) {
       pole.addEventListener('input', obliczSume);
     });
-
-    // Uruchom obliczenia raz na starcie, aby wyświetlić "0.00"
+    
     obliczSume();
 
   </script>
@@ -242,6 +215,7 @@
 </body>
 
 </html>
+
 
 
 
