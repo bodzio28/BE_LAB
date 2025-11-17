@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <title>Faktura</title>
-  <style>
+  <meta charset="UTF-8">
+  <title>Faktura</title>
+  <style>
     body {
       background-color: #f0f0f0;
       display: flex;
@@ -59,17 +59,16 @@
       font-weight: bold;
       text-align: right;
     }
+    
+    /* Dane z XML */
+    #data-wystawienia  { top: 80px; left: 1000px; width: 120px; text-align: right;}
+    #miejsce-wystawienia { top: 60px; left: 1100px; width: 110px; text-align: right;}
+    #sprzedawca-imie  { top: 100px; left: 450px; width: 210px; }
+    #sprzedawca-nazwisko  { top: 130px; left: 450px; width: 210px; }
+    #sprzedawca-adres  { top: 160px; left: 450px; width: 210px; }
 
-    /* Dane z XML */
-    #data-wystawienia  { top: 80px; left: 1000px; width: 120px; text-align: right;}
-    #miejsce-wystawienia { top: 60px; left: 1100px; width: 110px; text-align: right;}
-    #sprzedawca-firma  { top: 220px; left: 500px; width: 700px; } 
-    #sprzedawca-imie  { top: 100px; left: 450px; width: 210px; }
-    #sprzedawca-nazwisko  { top: 130px; left: 450px; width: 210px; }
-    #sprzedawca-adres  { top: 160px; left: 450px; width: 210px; }
-
-   /* Dane wpisywane (Nabywca) */
-    #nabywca-nazwa { top: 320px; left: 300px; width: 700px; }
+    /* Dane wpisywane (Nabywca) */
+    #nabywca-nazwa { top: 290px; left: 500px; width: 700px; }
     #nabywca-adres { top: 357px; left: 300px; width: 700px; }
     
     /* ---- WIERSZ 1 ---- */
@@ -104,152 +103,152 @@
 
     /* ---- RAZEM ---- */
     #suma-razem     { top: 830px; left: 1640px; width: 250px; text-align: center;}
-  </style>
+
+  </style>
 </head>
 <body>
 
-  <div class="faktura-kontener">
-    
-    <span id="data-wystawienia" class="pole pole-xml"></span>
-    <span id="miejsce-wystawienia" class="pole pole-xml"></span>
-    <span id="sprzedawca-firma" class="pole pole-xml"></span> 
+  <div class="faktura-kontener">
+    
+    <span id="data-wystawienia" class="pole pole-xml"></span>
+    <span id="miejsce-wystawienia" class="pole pole-xml"></span>
+    <span id="sprzedawca-imie" class="pole pole-xml"></span>
+    <span id="sprzedawca-nazwisko" class="pole pole-xml"></span>
+    <span id="sprzedawca-adres" class="pole pole-xml"></span>
+    
+    <input type="text" id="nabywca-nazwa" class="pole pole-input" placeholder="Imię, nazwisko...">
+    <input type="text" id="nabywca-adres" class="pole pole-input" placeholder="Adres...">
+    
+    <input type="text" id="nazwa-towaru-1" class="pole pole-input" placeholder="Nazwa towaru...">
+    <input type="number" id="ilosc-1" class="pole pole-input pole-obliczeniowe" value="0" min="0">
+    <input type="number" id="cena-jedn-1" class="pole pole-input pole-obliczeniowe" value="0.00" step="0.01" min="0">
+    <input type="text" id="wartosc-towaru-1" class="pole pole-wynik" readonly>
 
-    <span id="sprzedawca-imie" class="pole pole-xml"></span>
-    <span id="sprzedawca-nazwisko" class="pole pole-xml"></span>
-    <span id="sprzedawca-adres" class="pole pole-xml"></span>
-    
-    <input type="text" id="nabywca-nazwa" class="pole pole-input" placeholder="Imię, nazwisko...">
-    <input type="text" id="nabywca-adres" class="pole pole-input" placeholder="Adres...">
-    
-    <input type="text" id="nazwa-towaru-1" class="pole pole-input" placeholder="Nazwa towaru...">
-    <input type="number" id="ilosc-1" class="pole pole-input pole-obliczeniowe" value="0" min="0">
-    <input type="number" id="cena-jedn-1" class="pole pole-input pole-obliczeniowe" value="0.00" step="0.01" min="0">
-    <input type="text" id="wartosc-towaru-1" class="pole pole-wynik" readonly>
+    <input type="text" id="nazwa-towaru-2" class="pole pole-input" placeholder="Nazwa towaru...">
+    <input type="number" id="ilosc-2" class="pole pole-input pole-obliczeniowe" value="0" min="0">
+    <input type="number" id="cena-jedn-2" class="pole pole-input pole-obliczeniowe" value="0.00" step="0.01" min="0">
+    <input type="text" id="wartosc-towaru-2" class="pole pole-wynik" readonly>
 
-    <input type="text" id="nazwa-towaru-2" class="pole pole-input" placeholder="Nazwa towaru...">
-    <input type="number" id="ilosc-2" class="pole pole-input pole-obliczeniowe" value="0" min="0">
-    <input type="number" id="cena-jedn-2" class="pole pole-input pole-obliczeniowe" value="0.00" step="0.01" min="0">
-    <input type="text" id="wartosc-towaru-2" class="pole pole-wynik" readonly>
+    <input type="text" id="nazwa-towaru-3" class="pole pole-input" placeholder="Nazwa towaru...">
+    <input type="number" id="ilosc-3" class="pole pole-input pole-obliczeniowe" value="0" min="0">
+    <input type="number" id="cena-jedn-3" class="pole pole-input pole-obliczeniowe" value="0.00" step="0.01" min="0">
+    <input type="text" id="wartosc-towaru-3" class="pole pole-wynik" readonly>
 
-    <input type="text" id="nazwa-towaru-3" class="pole pole-input" placeholder="Nazwa towaru...">
-    <input type="number" id="ilosc-3" class="pole pole-input pole-obliczeniowe" value="0" min="0">
-    <input type="number" id="cena-jedn-3" class="pole pole-input pole-obliczeniowe" value="0.00" step="0.01" min="0">
-    <input type="text" id="wartosc-towaru-3" class="pole pole-wynik" readonly>
+    <input type="text" id="nazwa-towaru-4" class="pole pole-input" placeholder="Nazwa towaru...">
+    <input type="number" id="ilosc-4" class="pole pole-input pole-obliczeniowe" value="0" min="0">
+    <input type="number" id="cena-jedn-4" class="pole pole-input pole-obliczeniowe" value="0.00" step="0.01" min="0">
+    <input type="text" id="wartosc-towaru-4" class="pole pole-wynik" readonly>
+    
+    <input type="text" id="nazwa-towaru-5" class="pole pole-input" placeholder="Nazwa towaru...">
+    <input type="number" id="ilosc-5" class="pole pole-input pole-obliczeniowe" value="0" min="0">
+    <input type="number" id="cena-jedn-5" class="pole pole-input pole-obliczeniowe" value="0.00" step="0.01" min="0">
+    <input type="text" id="wartosc-towaru-5" class="pole pole-wynik" readonly>
 
-    <input type="text" id="nazwa-towaru-4" class="pole pole-input" placeholder="Nazwa towaru...">
-    <input type="number" id="ilosc-4" class="pole pole-input pole-obliczeniowe" value="0" min="0">
-    <input type="number" id="cena-jedn-4" class="pole pole-input pole-obliczeniowe" value="0.00" step="0.01" min="0">
-    <input type="text" id="wartosc-towaru-4" class="pole pole-wynik" readonly>
-    
-    <input type="text" id="nazwa-towaru-5" class="pole pole-input" placeholder="Nazwa towaru...">
-    <input type="number" id="ilosc-5" class="pole pole-input pole-obliczeniowe" value="0" min="0">
-    <input type="number" id="cena-jedn-5" class="pole pole-input pole-obliczeniowe" value="0.00" step="0.01" min="0">
-    <input type="text" id="wartosc-towaru-5" class="pole pole-wynik" readonly>
-    
- <input type="text" id="suma-razem" class="pole pole-wynik" readonly>
 
-  </div>
+    
+ <input type="text" id="suma-razem" class="pole pole-wynik" readonly>
 
-  <script>
-    
-    // ==========================================================
-    // CZĘŚĆ 1: ŁADOWANIE DANYCH STATYCZNYCH Z XML
-    // ==========================================================
-    async function zaladujDaneXML() {
-      try {
-        const response = await fetch('faktura.xml');
-        if (!response.ok) {
-            throw new Error(`Błąd HTTP! Status: ${response.status}`);
-        }
-        const xmlText = await response.text();
-        
-        const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(xmlText, "application/xml");
+  </div>
 
-        // Wyciągamy dane z XML
-        const data = xmlDoc.querySelector('dataWystawienia').textContent;
-        const miejsce = xmlDoc.querySelector('miejsceWystawienia').textContent;
-        const sprzedawcaNazwa = xmlDoc.querySelector('sprzedawca nazwa').textContent;
-        const sprzedawcaImie = xmlDoc.querySelector('sprzedawca imie').textContent;
-        const sprzedawcaNazwisko = xmlDoc.querySelector('sprzedawca nazwisko').textContent;
-        const sprzedawcaAdres = xmlDoc.querySelector('sprzedawca adres').textContent;
+  <script>
+    
+    // ==========================================================
+    // CZĘŚĆ 1: ŁADOWANIE DANYCH STATYCZNYCH Z XML
+    // ==========================================================
+    async function zaladujDaneXML() {
+      try {
+        const response = await fetch('faktura.xml');
+        if (!response.ok) {
+            throw new Error(`Błąd HTTP! Status: ${response.status}`);
+        }
+        const xmlText = await response.text();
+        
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(xmlText, "application/xml");
 
-        // Wstrzykujemy dane do naszych pól HTML
-        document.getElementById('data-wystawienia').textContent = data;
-        document.getElementById('miejsce-wystawienia').textContent = miejsce;
+        // Wyciągamy dane z XML
+        const data = xmlDoc.querySelector('dataWystawienia').textContent;
+        const miejsce = xmlDoc.querySelector('miejsceWystawienia').textContent;
+        const sprzedawcaImie = xmlDoc.querySelector('sprzedawca imie').textContent;
+        const sprzedawcaNazwisko = xmlDoc.querySelector('sprzedawca nazwisko').textContent;
+        const sprzedawcaNazwa = xmlDoc.querySelector('sprzedawca nazwa').textContent;
+        const sprzedawcaAdres = xmlDoc.querySelector('sprzedawca adres').textContent;
 
-        /* POPRAWKA 3/3: Naprawiono błąd (literówkę). Było 'sprzedawca', jest 'sprzedawcaNazwa' */
-        document.getElementById('sprzedawca-nazwa').textContent = sprzedawcaNazwa;
-        
-        document.getElementById('sprzedawca-imie').textContent = sprzedawcaImie;
-        document.getElementById('sprzedawca-nazwisko').textContent = sprzedawcaNazwisko;
-        document.getElementById('sprzedawca-adres').textContent = sprzedawcaAdres;
-        
-      } catch (error) {
-        // Ten błąd już się nie powinien pojawić, chyba że plik XML znowu zniknie
-        console.error('Nie można załadować lub przetworzyć pliku XML:', error);
-        alert('Wystąpił krytyczny błąd podczas przetwarzania XML. Sprawdź konsolę (F12).');
-      }
-    }
+        // Wstrzykujemy dane do naszych pól HTML
+        document.getElementById('data-wystawienia').textContent = data;
+        document.getElementById('miejsce-wystawienia').textContent = miejsce;
+        document.getElementById('sprzedawca-imie').textContent = sprzedawcaImie;
+        document.getElementById('sprzedawca-nazwisko').textContent = sprzedawcaNazwisko;
+        document.getElementById('sprzedawca-nazwa').textContent = sprzedawcaNazwa;
+        document.getElementById('sprzedawca-adres').textContent = sprzedawcaAdres;
+        
+      } catch (error) {
+        console.error('Nie można załadować pliku XML:', error);
+        alert('Nie udało się załadować danych statycznych z XML.');
+      }
+    }
 
-    // ==========================================================
-    // CZĘŚĆ 2: KALKULATOR SUM (JavaScript)
-    // ==========================================================
-    function obliczSume() {
-      let sumaCalkowita = 0;
-      
-      // --- Przetwarzanie Wiersza 1 ---
-      const ilosc1 = parseFloat(document.getElementById('ilosc-1').value) || 0;
-      const cena1 = parseFloat(document.getElementById('cena-jedn-1').value) || 0;
-      const wartosc1 = ilosc1 * cena1;
-      document.getElementById('wartosc-towaru-1').value = wartosc1.toFixed(2);
-      sumaCalkowita += wartosc1;
-      
-      // --- Przetwarzanie Wiersza 2 ---
-      const ilosc2 = parseFloat(document.getElementById('ilosc-2').value) || 0;
-      const cena2 = parseFloat(document.getElementById('cena-jedn-2').value) || 0;
-      const wartosc2 = ilosc2 * cena2;
-      document.getElementById('wartosc-towaru-2').value = wartosc2.toFixed(2);
-      sumaCalkowita += wartosc2;
+    // ==========================================================
+    // CZĘŚĆ 2: KALKULATOR SUM (JavaScript)
+    // ==========================================================
+    function obliczSume() {
+      let sumaCalkowita = 0;
+      
+      // --- Przetwarzanie Wiersza 1 ---
+      const ilosc1 = parseFloat(document.getElementById('ilosc-1').value) || 0;
+      const cena1 = parseFloat(document.getElementById('cena-jedn-1').value) || 0;
+      const wartosc1 = ilosc1 * cena1;
+      document.getElementById('wartosc-towaru-1').value = wartosc1.toFixed(2);
+      sumaCalkowita += wartosc1;
+      
+      // --- Przetwarzanie Wiersza 2 ---
+      const ilosc2 = parseFloat(document.getElementById('ilosc-2').value) || 0;
+      const cena2 = parseFloat(document.getElementById('cena-jedn-2').value) || 0;
+      const wartosc2 = ilosc2 * cena2;
+      document.getElementById('wartosc-towaru-2').value = wartosc2.toFixed(2);
+      sumaCalkowita += wartosc2;
 
-      const ilosc3 = parseFloat(document.getElementById('ilosc-3').value) || 0;
-      const cena3 = parseFloat(document.getElementById('cena-jedn-3').value) || 0;
-      const wartosc3 = ilosc3 * cena3;
-      document.getElementById('wartosc-towaru-3').value = wartosc3.toFixed(2);
-      sumaCalkowita += wartosc3;
+      const ilosc3 = parseFloat(document.getElementById('ilosc-3').value) || 0;
+      const cena3 = parseFloat(document.getElementById('cena-jedn-3').value) || 0;
+      const wartosc3 = ilosc3 * cena3;
+      document.getElementById('wartosc-towaru-3').value = wartosc3.toFixed(2);
+      sumaCalkowita += wartosc3;
 
-      const ilosc4 = parseFloat(document.getElementById('ilosc-4').value) || 0;
-      const cena4 = parseFloat(document.getElementById('cena-jedn-4').value) || 0;
-      const wartosc4 = ilosc4 * cena4;
-      document.getElementById('wartosc-towaru-4').value = wartosc4.toFixed(2);
-      sumaCalkowita += wartosc4;
+      const ilosc4 = parseFloat(document.getElementById('ilosc-4').value) || 0;
+      const cena4 = parseFloat(document.getElementById('cena-jedn-4').value) || 0;
+      const wartosc4 = ilosc4 * cena4;
+      document.getElementById('wartosc-towaru-4').value = wartosc4.toFixed(2);
+      sumaCalkowita += wartosc4;
 
-      const ilosc5 = parseFloat(document.getElementById('ilosc-5').value) || 0;
-      const cena5 = parseFloat(document.getElementById('cena-jedn-5').value) || 0;
-      const wartosc5 = ilosc5 * cena5;
-      document.getElementById('wartosc-towaru-5').value = wartosc5.toFixed(2);
-      sumaCalkowita += wartosc5;
-      
-      // --- Wyświetlenie sumy końcowej ---
-      document.getElementById('suma-razem').value = sumaCalkowita.toFixed(2) + ' zł';
-    }
+      const ilosc5 = parseFloat(document.getElementById('ilosc-5').value) || 0;
+      const cena5 = parseFloat(document.getElementById('cena-jedn-5').value) || 0;
+      const wartosc5 = ilosc5 * cena5;
+      document.getElementById('wartosc-towaru-5').value = wartosc5.toFixed(2);
+      sumaCalkowita += wartosc5;
+      
+      // --- Wyświetlenie sumy końcowej ---
+      document.getElementById('suma-razem').value = sumaCalkowita.toFixed(2) + ' zł';
+    }
 
-    // ==========================================================
-    // START PROGRAMU
-    // ==========================================================
+    // ==========================================================
+    // START PROGRAMU
+    // ==========================================================
 
-    document.addEventListener('DOMContentLoaded', zaladujDaneXML);
+    // Kiedy strona się załaduje, najpierw wczytaj dane z XML
+    document.addEventListener('DOMContentLoaded', zaladujDaneXML);
 
-    const polaDoKalkulacji = document.querySelectorAll('.pole-obliczeniowe');
-    
-    polaDoKalkulacji.forEach(function(pole) {
-      pole.addEventListener('input', obliczSume);
-    });
+    // Znajdź wszystkie pola, które wpływają na obliczenia
+    const polaDoKalkulacji = document.querySelectorAll('.pole-obliczeniowe');
+    
+    // Dodaj "nasłuch" do każdego z nich, aby przeliczać sumę na żywo
+    polaDoKalkulacji.forEach(function(pole) {
+      pole.addEventListener('input', obliczSume);
+    });
 
-    obliczSume();
+    // Uruchom obliczenia raz na starcie, aby wyświetlić "0.00"
+    obliczSume();
 
-  </script>
+  </script>
 
 </body>
-
 </html>
