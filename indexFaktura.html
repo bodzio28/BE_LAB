@@ -156,8 +156,9 @@
     // CZĘŚĆ 1: ŁADOWANIE DANYCH STATYCZNYCH Z XML
     // ==========================================================
     async function zaladujDaneXML() {
-      try {
+
         const response = await fetch('faktura.xml');
+        
         if (!response.ok) {
             throw new Error(`Błąd HTTP! Status: ${response.status}`);
         }
@@ -181,11 +182,6 @@
         document.getElementById('sprzedawca-nazwisko').textContent = sprzedawcaNazwisko;
         document.getElementById('sprzedawca-nazwa').textContent = sprzedawcaNazwa;
         document.getElementById('sprzedawca-adres').textContent = sprzedawcaAdres;
-        
-      } catch (error) {
-        console.error('Nie można załadować pliku XML:', error);
-        alert('Nie udało się załadować danych statycznych z XML.');
-      }
     }
 
     // ==========================================================
